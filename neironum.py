@@ -84,24 +84,24 @@ class Board:
 	#Кисть для рисования с жирностью
 	def on_click(self, cell):
 		if cell is not None:
-				for i in (-1, 0, 1):
-					for j in (-1, 0, 1):
-						if self.new_cell((cell[1] + i, cell[0] + j)):
-							hg = i == 0 or j == 0
-							if not self.tool:
-								if hg:
-									self.board[cell[1] + i][cell[0] + j] += 17
-								else:
-									self.board[cell[1] + i][cell[0] + j] += 5
-								if self.board[cell[1] + i][cell[0] + j] > 255:
-									self.board[cell[1] + i][cell[0] + j] = 255
+			for i in (-1, 0, 1):
+				for j in (-1, 0, 1):
+					if self.new_cell((cell[1] + i, cell[0] + j)):
+						hg = i == 0 or j == 0
+						if not self.tool:
+							if hg:
+								self.board[cell[1] + i][cell[0] + j] += 17
 							else:
-								if hg:
-									self.board[cell[1] + i][cell[0] + j] -= 17
-								else:
-									self.board[cell[1] + i][cell[0] + j] -= 5
-								if self.board[cell[1] + i][cell[0] + j] < 0:
-									self.board[cell[1] + i][cell[0] + j] = 0
+								self.board[cell[1] + i][cell[0] + j] += 5
+							if self.board[cell[1] + i][cell[0] + j] > 255:
+								self.board[cell[1] + i][cell[0] + j] = 255
+						else:
+							if hg:
+								self.board[cell[1] + i][cell[0] + j] -= 17
+							else:
+								self.board[cell[1] + i][cell[0] + j] -= 5
+							if self.board[cell[1] + i][cell[0] + j] < 0:
+								self.board[cell[1] + i][cell[0] + j] = 0
 
 	def get_click(self, mouse_pos):
 		cell = self.get_cell(mouse_pos)

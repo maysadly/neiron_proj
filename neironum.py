@@ -17,7 +17,7 @@ class Board:
 		self.width = width
 		self.height = height
 		#создание многомерного массива где значения это градация серого
-		self.board = [[0] * width for _ in range(height)]
+		self.board = [[255] * width for _ in range(height)]
 		self.left = 10
 		self.top = 10
 		self.cell_size = 30
@@ -42,7 +42,7 @@ class Board:
 				gr = self.board[i][j]
 				rect = pygame.Rect((j * self.cell_size), (i * self.cell_size), self.cell_size, self.cell_size)
 				pygame.draw.rect(serf, pygame.Color(gr, gr, gr), rect, width=0)
-				st.append(gr / 255)
+				st.append((255 - gr) / 255)
 			x_arr.append(st)
 		#Частота входных данных
 		if self.rate != 100:
@@ -88,7 +88,7 @@ class Board:
 					for j in (-1, 0, 1):
 						if self.new_cell((cell[1] + i, cell[0] + j)):
 							hg = i == 0 or j == 0
-							if self.tool:
+							if not self.tool:
 								if hg:
 									self.board[cell[1] + i][cell[0] + j] += 17
 								else:
